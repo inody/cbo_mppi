@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-replay-figures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install figure-system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils texlive-latex-base texlive-fonts-recommended
+      - name: Install Python environment
+        run: uv sync --frozen --group dev
+      - name: Run tests
+        run: uv run python -m pytest -q
+      - name: Replay all manuscript figures
+        run: uv run python reproduce.py --source frozen
+      - name: Check figure count
+        run: test "$(find artifacts/figures -maxdepth 1 -name '*.pdf' | wc -l)" -eq 9

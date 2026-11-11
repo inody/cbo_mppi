@@ -1,0 +1,51 @@
+[problem]
+dt = 0.1
+horizon = 40
+simulation_steps = 120
+nominal_profile = "minimum_jerk"
+initial_state = [-4.0, 0.0, 0.0, 0.0]
+goal = [4.0, 0.0]
+# Case 1: symmetric narrow passage. The physical gap is 0.40, so the
+# straight route is hard-feasible. safety_margin is evaluation-only.
+obstacle_centers = [[0.0, 0.85], [0.0, -0.85]]
+obstacle_radii = [0.65, 0.65]
+safety_margin = 0.15
+hard_obstacles = true
+q_goal_running = 0.1
+q_goal_terminal = 30.0
+q_velocity_running = 0.05
+q_velocity_terminal = 10.0
+q_control = 0.01
+q_control_rate = 0.02
+q_obstacle = 0.0
+u_max = 4.0
+
+[mppi]
+tau = 30.0
+noise_sigma = 0.35
+noise_correlation = 0.9
+
+[cbo]
+alpha = 0.02
+lambda = 1.0
+sigma = 0.14
+delta_s = 0.2
+init_sigma = 1.0
+init_noise_correlation = 0.9
+
+[proposed]
+tau = 30.0
+local_noise_sigma = 0.35
+local_noise_correlation = 0.9
+alpha = 0.02
+lambda = 1.0
+sigma = 0.14
+delta_s = 0.2
+init_sigma = 1.0
+init_noise_correlation = 0.9
+output_rule = "weighted"
+shared_local_noise = true
+# GA-CBO-MPPI options. eta_grad=0 exactly recovers the baseline update.
+eta_grad = 0.0
+# L2 cap on eta_grad * (local weighted mean - center); 0 disables clipping.
+grad_clip = 0.0

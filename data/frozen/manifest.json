@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1056,
+      "sha256": "94c1d839a9682c07b73e1a26a00c3def094e94f5f17fc4592d974fc39e78d3ba"
+    },
+    {
+      "path": "figures/closed_loop_figure_trajectories.npz",
+      "bytes": 2465603,
+      "sha256": "0280b85849eb8d6b09b98e03efd4ca20f527fbd255586a84f9f339975bd7d091"
+    },
+    {
+      "path": "figures/horizon/figure_input.csv",
+      "bytes": 12337,
+      "sha256": "8dfba60f7368adafc6087c6bdfc87bf44bc79a4f756734fbc728894e7fea9f41"
+    },
+    {
+      "path": "figures/navigation/case1_landscape.pdf",
+      "bytes": 44074,
+      "sha256": "f44c423268814dbeb8e67a4629286daa85a7f7ab8a9d6b7cd84278a2a88662e8"
+    },
+    {
+      "path": "figures/navigation/route_height_trajectories.pdf",
+      "bytes": 30425,
+      "sha256": "6b47e08dc4ef66cde2975a77b9fe9d0f6556f29a7c86ab144edf8c2dcc36518a"
+    },
+    {
+      "path": "figures/pendulum/landscape_tau10.npz",
+      "bytes": 160221,
+      "sha256": "9e84decfa6ca64343b71142865f02f2bf2cba2bc4476960faf66f77072256675"
+    },
+    {
+      "path": "figures/planar_arm/frozen_design.json",
+      "bytes": 659,
+      "sha256": "4a8bf4a52f96d944db285dcf244d4541b8dcb9d6cabbc559c16002c1191d9596"
+    },
+    {
+      "path": "figures/planar_arm/landscape_arrays.npz",
+      "bytes": 253942,
+      "sha256": "d11a6fec4c1c7f81de71d89a80ee20041046a1463d7c6f34d3d129b2688544cb"
+    }
+  ]
+}

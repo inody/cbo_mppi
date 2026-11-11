@@ -1,0 +1,30 @@
+{
+  "authority": {
+    "diagnostic_problem": {
+      "Q_ee": 200.0,
+      "Q_v": 1.0,
+      "damping": 1.0,
+      "dt": 0.1,
+      "ee_tol": 0.2,
+      "goal": [1.8, 1.2],
+      "horizon": 60,
+      "link_lengths": [1.0, 1.0, 1.0],
+      "link_radius": 0.05,
+      "obstacle_centers": [[1.0, 0.6], [1.5, 0.9]],
+      "obstacle_radii": [0.25, 0.2],
+      "omega0": [0.0, 0.0, 0.0],
+      "q_du": 0.01,
+      "q_ee": 10.0,
+      "q_lim": 20.0,
+      "q_max": 2.5,
+      "q_min": -2.5,
+      "q_obs": 100.0,
+      "q_u": 0.002,
+      "q_v": 0.2,
+      "safety_margin": 0.0,
+      "theta0": [-0.8, 1.0, -0.6],
+      "u_max": 5.0,
+      "vel_tol": 1.5
+    }
+  }
+}

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cbo-mppi"
+version = "0.1.0"
+description = "Public implementation and manuscript reproduction for CBO-MPPI"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+  "jax==0.8.3",
+  "matplotlib==3.11.0",
+  "numpy==2.4.6",
+]
+
+[project.optional-dependencies]
+cuda = ["jax[cuda13]==0.8.3"]
+
+[dependency-groups]
+dev = ["pytest>=8.3"]
+
+[project.scripts]
+cbo-mppi-figures = "cbo_mppi.figures.generate_all:main"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cbo_mppi", "experiments"]
