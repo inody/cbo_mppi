@@ -15,7 +15,7 @@ jobs:
       - name: Install figure-system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y poppler-utils texlive-latex-base texlive-fonts-recommended
+          sudo apt-get install -y cm-super poppler-utils texlive-latex-base texlive-fonts-recommended
       - name: Install Python environment
         run: uv sync --frozen --group dev
       - name: Run tests
