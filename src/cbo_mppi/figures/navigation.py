@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""L4DC掲載サイズでNavigation図を描画する（制御・目的関数の再評価なし）。
+"""Render the Navigation figures at publication size without reevaluating controls or objectives.
 
-閉ループは五パネル版と同じ固定NPZ。開ループは原図PDFのベクトル線を
-Popplerで取り出して再描画する。後者は表示済み曲線の再組版であり、生の
-Monte Carlo値の復元や新たな数値解析ではない。
+The closed-loop figure uses the same frozen NPZ as the five-panel version. For
+open-loop figures, vector paths are extracted from the original PDFs with
+Poppler and redrawn. This only recomposes already rendered curves; it neither
+recovers raw Monte Carlo values nor performs new numerical analysis.
 """
 from __future__ import annotations
 
@@ -53,7 +54,7 @@ def vector_lines(pdf):
 
 
 def save(fig, path, vertical_bbox=None):
-    # 横幅と図中要素の大きさを保ち、指定時は上下の余白だけを切り詰める。
+    # Preserve the width and element sizes; crop only vertical margins when requested.
     kwargs = {'metadata': {'CreationDate': None, 'ModDate': None}}
     if vertical_bbox is not None:
         bottom, top = vertical_bbox
@@ -71,7 +72,7 @@ def open_loop(out, route_pdf, landscape_pdf):
     landscape_paths = [(e, v) for e, v in vector_lines(landscape_pdf)
                        if e.get('stroke-width') == '1.3' and len(v) > 50]
     if len(route_paths) != 9 or len(landscape_paths) != 3:
-        raise ValueError('原図の構成が変わっています。ベクトル抽出条件を再確認してください。')
+        raise ValueError('The original figure structure has changed; review the vector extraction criteria.')
     center = next(v for e, v in route_paths if e.get('stroke-width') == '1.5')
     x0, x1 = center[0, 0], center[-1, 0]
     scale = (x1 - x0) / 8
@@ -103,7 +104,7 @@ def open_loop(out, route_pdf, landscape_pdf):
     cbar.ax.text(-.07, .5, r'$h$', transform=cbar.ax.transAxes,
                  ha='right', va='center', fontsize=9)
     ax = axes[1]
-    # 元図は各曲線を個別に[0,1]へ正規化。共通の座標変換だけで保持する。
+    # The original figure normalizes each curve independently to [0, 1].
     all_v = np.concatenate([v for e,v in landscape_paths])
     xmin,xmax = np.nanmin(all_v[:,0]),np.nanmax(all_v[:,0])
     ymin,ymax = np.nanmin(all_v[:,1]),np.nanmax(all_v[:,1])
@@ -121,7 +122,7 @@ def open_loop(out, route_pdf, landscape_pdf):
     for ax in axes:
         ax.grid(alpha=.18);ax.tick_params(pad=2)
         ax.xaxis.labelpad=2;ax.yaxis.labelpad=2
-    # 同じ高さのプロット枠。左は幾何学アスペクト比を厳守。
+    # Match the plot-frame heights while strictly preserving the left panel's aspect ratio.
     pos=axes[0].get_position();right=axes[1].get_position()
     axes[1].set_position([right.x0,pos.y0,right.width,pos.height])
     output=out/'navigation_open_loop.pdf';save(fig,output,vertical_bbox=(4/72,142/72))
@@ -219,7 +220,7 @@ def closed_loop(data_file,out):
         ax.set_xticks([-4,0,4]);ax.set_yticks([-2,0,2])
         ax.xaxis.labelpad=1;ax.yaxis.labelpad=1;ax.tick_params(pad=2)
     for ax,low,high in [(axes[0],batches[0],batches[1]),(axes[2],batches[2],batches[3])]:
-        # 低温は破線を上に描く。重なる直線部でも実線の高温が隙間に見える。
+        # Draw low-temperature dashed curves on top so high-temperature solid curves remain visible in the gaps.
         for x in high:ax.plot(x[:,0],x[:,1],color='#0072B2',lw=.8,alpha=.45,zorder=2)
         for x in low:ax.plot(x[:,0],x[:,1],color='#D55E00',ls=(0,(4,3)),lw=.8,alpha=.55,zorder=3)
     for x in batches[4]:axes[1].plot(x[:,0],x[:,1],color='#555555',lw=.8,alpha=.5,zorder=2)
