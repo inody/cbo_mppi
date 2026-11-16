@@ -65,8 +65,6 @@ def generate(
 ) -> None:
     if shutil.which("latex") is None:
         raise RuntimeError("a LaTeX installation is required to render manuscript fonts")
-    if shutil.which("pdftocairo") is None:
-        raise RuntimeError("pdftocairo is required for the Navigation open-loop figure")
     output = output.resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ)
@@ -90,16 +88,15 @@ def generate(
         ]
         route_data = data / "navigation/route_heights.npz"
         landscape_data = data / "navigation/free_energy_landscape.npz"
-        if route_data.is_file() and landscape_data.is_file():
-            navigation_command += [
-                "--route-data", str(route_data),
-                "--landscape-data", str(landscape_data),
-            ]
-        else:
-            navigation_command += [
-                "--route-source", str(data / "navigation/route_height_trajectories.pdf"),
-                "--landscape-source", str(data / "navigation/case1_landscape.pdf"),
-            ]
+        if not route_data.is_file() or not landscape_data.is_file():
+            raise FileNotFoundError(
+                "Navigation figure inputs are missing: "
+                f"{route_data}, {landscape_data}"
+            )
+        navigation_command += [
+            "--route-data", str(route_data),
+            "--landscape-data", str(landscape_data),
+        ]
         run(navigation_command, env)
         run([
             python, "-m", "cbo_mppi.figures.planar_arm",

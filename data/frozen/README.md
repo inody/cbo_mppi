@@ -6,8 +6,10 @@ workflow.
 
 - `figures/closed_loop_figure_trajectories.npz` contains all 100 realized state
   trajectories used in the closed-loop trajectory and posture figures.
-- `figures/navigation/` contains the vector curves used to recompose the
-  Navigation open-loop figure.
+- `figures/navigation/route_heights.npz` contains the route-height trajectory
+  family and task geometry for the Navigation open-loop figure.
+  `free_energy_landscape.npz` contains the corresponding nominal-cost and
+  free-energy curves from the independently verified full reproduction.
 - `figures/pendulum/landscape_tau10.npz` contains the evaluated Pendulum
   landscape grid.
 - `figures/planar_arm/landscape_arrays.npz` contains the evaluated Planar Arm

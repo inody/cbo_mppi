@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 1056,
-      "sha256": "94c1d839a9682c07b73e1a26a00c3def094e94f5f17fc4592d974fc39e78d3ba"
+      "bytes": 1240,
+      "sha256": "3e0c736b9789864e2abcdce8858a2d5b23cb2f0d5f8392e1dbefb809328037c5"
     },
     {
       "path": "figures/closed_loop_figure_trajectories.npz",
@@ -17,14 +17,14 @@
       "sha256": "8dfba60f7368adafc6087c6bdfc87bf44bc79a4f756734fbc728894e7fea9f41"
     },
     {
-      "path": "figures/navigation/case1_landscape.pdf",
-      "bytes": 44074,
-      "sha256": "f44c423268814dbeb8e67a4629286daa85a7f7ab8a9d6b7cd84278a2a88662e8"
+      "path": "figures/navigation/free_energy_landscape.npz",
+      "bytes": 3546,
+      "sha256": "be0a9c513098f11f20c09d18978385e2158b1f0e1cc7e329dcca09361114fa21"
     },
     {
-      "path": "figures/navigation/route_height_trajectories.pdf",
-      "bytes": 30425,
-      "sha256": "6b47e08dc4ef66cde2975a77b9fe9d0f6556f29a7c86ab144edf8c2dcc36518a"
+      "path": "figures/navigation/route_heights.npz",
+      "bytes": 3105,
+      "sha256": "a6e30809fc0818f7b802e123337dbdc46c00ea8ef6d7ead08dc91f8c6b649000"
     },
     {
       "path": "figures/pendulum/landscape_tau10.npz",

@@ -15,6 +15,15 @@ Timing benchmarks are intentionally outside the numerical reproduction target:
 they depend on the execution machine and are reported as measurements of the
 original environment, not as hardware-independent scientific outputs.
 
+The main workflows are also available through a small `Makefile`:
+
+```bash
+make setup
+make verify          # tests and isolated replay of all nine figures
+make figures         # write the nine figures under artifacts/figures/
+make reproduce-plan  # inspect the full numerical campaign without running it
+```
+
 ## Fast figure replay
 
 ```bash
@@ -23,9 +32,8 @@ uv run python reproduce.py --source frozen
 ```
 
 This generates the nine PDFs under `artifacts/figures/`. The plotting pipeline
-has been checked against the current manuscript PDFs by rasterized comparison.
-It uses only the compact files under `data/frozen/` and does not run controller
-simulations.
+uses only compact numerical arrays and tables under `data/frozen/`; existing
+PDFs are not used as generator inputs. It does not run controller simulations.
 
 ## Full numerical reproduction
 
@@ -38,6 +46,10 @@ uv run python reproduce.py --source simulation --output artifacts/full-run
 uv run python reproduce.py --source simulation --execute --gpu-index 0 \
   --output artifacts/full-run
 ```
+
+The equivalent Makefile commands are `make setup-cuda`, `make reproduce-plan`,
+and `make reproduce GPU_INDEX=0`. Add `REPRO_FLAGS=--resume` to resume a
+compatible interrupted run.
 
 The full workflow runs 5880 closed-loop trajectories, 6280 common-noise
 free-energy evaluations, three landscape calculations, aggregation, all nine
