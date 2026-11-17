@@ -3,6 +3,9 @@
 This repository contains the public implementation and reproduction materials
 for the CBO-MPPI manuscript.
 
+**Paper:** [Consensus-Based Optimization of Path-Integral Free Energy for Model
+Predictive Control](https://arxiv.org/abs/2611.18208) (arXiv:2611.18208).
+
 Two reproduction workflows are supported:
 
 1. **Frozen-data figure replay** regenerates all nine manuscript figures from
@@ -74,8 +77,9 @@ and [docs/CAMPAIGNS.md](docs/CAMPAIGNS.md) for the campaign inventory.
 
 ## Citation
 
-Citation metadata for the software and manuscript authors is provided in
-[`CITATION.cff`](CITATION.cff).
+Please cite the [CBO-MPPI preprint](https://arxiv.org/abs/2611.18208) when using
+this implementation. Machine-readable citation metadata for the paper and
+software is provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 

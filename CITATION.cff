@@ -16,3 +16,18 @@ authors:
     given-names: Yuyang
   - family-names: Kalise
     given-names: Dante
+preferred-citation:
+  type: article
+  title: >-
+    Consensus-Based Optimization of Path-Integral Free Energy for
+    Model Predictive Control
+  authors:
+    - family-names: Inoue
+      given-names: Daisuke
+    - family-names: Huang
+      given-names: Yuyang
+    - family-names: Kalise
+      given-names: Dante
+  journal: arXiv
+  year: 2026
+  url: https://arxiv.org/abs/2611.18208
